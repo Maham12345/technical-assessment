@@ -32,9 +32,8 @@ The script performs the following tasks:
      export GOOGLE_APPLICATION_CREDENTIALS="path/to/your/credentials.json"
      ```
 
-## Setup
+## Design Justifications
 
-1. Clone this repository and navigate to the project directory.
-2. Install the required Python libraries:
-   ```bash
-   pip install pandas google-cloud-storage
+1. 
+2. 
+   
