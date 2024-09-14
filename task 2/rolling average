@@ -1,1 +1,23 @@
+WITH RollingAverage AS (
+    SELECT
+        OrderID,
+        CustomerID,
+        OrderRegion,
+        OrderDate,
+        OrderAmount,
+        ProductID,
+        Quantity,
+        TotalOrderValue,
+        -- Calculate the rolling average of total spending over the last 30 days
+        AVG(TotalOrderValue) OVER (
+            PARTITION BY CustomerID
+            ORDER BY OrderDate
+            ROWS BETWEEN 29 PRECEDING AND CURRENT ROW
+        ) AS RollingAvgSpending
+    FROM
+         `customer_information.customer_information`
+)
 
+-- Select to verify rolling averages
+SELECT *
+FROM RollingAverage
