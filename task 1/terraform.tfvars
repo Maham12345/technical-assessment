@@ -1,0 +1,7 @@
+project_id            = "your-gcp-project-id"
+region                = "us-central1"
+pubsub_topic_name     = "ecommerce-data-topic"
+dataflow_job_name     = "dataflow-realtime-job"
+dataproc_cluster_name = "dataproc-batch-cluster"
+bigquery_dataset_name = "ecommerce_analytics"
+composer_env_name     = "composer-workflow"
