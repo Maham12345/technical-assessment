@@ -80,4 +80,42 @@ This script is designed to read, clean, transform, and upload customer order dat
 
 # Overview (TASK 2 - PART 2)
 
+## 30 days rolling average query
+
+1. **Window Function (AVG() with OVER()):**:
+   
+   This window function calculates the rolling average of the TotalOrderValue for each customer over a 30-day period 
+   (29 preceding rows plus the current row)
+
+2. **Partitioning by CustomerID:**:
+   
+   Ensures that the rolling average is computed individually for each customer
+
+3. **Ordering by OrderDate:**:
+   
+   Ensures that the rolling average is computed in chronological order over a window of 30 days
+
+## RESULT:
+
+<img width="768" alt="image" src="https://github.com/user-attachments/assets/f5eafe6b-6ca8-47ad-9efc-e3027ea2e836">
+
+<img width="1221" alt="image" src="https://github.com/user-attachments/assets/e36311de-d5a7-4350-bbfd-415d2244c21d">
+
+## highest average spending aggregrated by region query
+
+1. **Window Function (AVG() with OVER()):**:
+   
+   This window function calculates the rolling average of the TotalOrderValue for each customer over a 30-day period 
+   (29 preceding rows plus the current row)
+
+2. **Partitioning by CustomerID:**:
+   
+   Ensures that the rolling average is computed individually for each customer
+
+3. **Ordering by OrderDate:**:
+   
+   Ensures that the rolling average is computed in chronological order over a window of 30 days
+
+## RESULT:
+
    
