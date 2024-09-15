@@ -1,4 +1,4 @@
-# Overview
+# Overview (TASK 2 - PART 1)
 
 This script is designed to read, clean, transform, and upload customer order data to Google Cloud Storage (GCS). Below is an explanation of the decisions made at each step:
 
@@ -58,7 +58,7 @@ This script is designed to read, clean, transform, and upload customer order dat
 
 
 
-### Google Cloud Setup:
+## Google Cloud Setup:
 
 1. **Create a GCS Bucket**: Create a bucket in Google Cloud Storage to store the cleaned data.
 2. **Generate a Service Account Key**:
@@ -69,5 +69,7 @@ This script is designed to read, clean, transform, and upload customer order dat
      ```bash
      export GOOGLE_APPLICATION_CREDENTIALS="path/to/your/credentials.json"
      ```
+
+# Overview (TASK 2 - PART 2)
 
    
