@@ -69,6 +69,14 @@ This script is designed to read, clean, transform, and upload customer order dat
      ```bash
      export GOOGLE_APPLICATION_CREDENTIALS="path/to/your/credentials.json"
      ```
+## RESULT:
+<img width="1214" alt="image" src="https://github.com/user-attachments/assets/45aff08c-303f-4c28-9f72-0f5ea5c9452f">
+
+## TRANSFORMED DATA SET:
+
+<img width="554" alt="image" src="https://github.com/user-attachments/assets/97958a86-93d9-4586-9fb5-381764f6124c">
+
+
 
 # Overview (TASK 2 - PART 2)
 
