@@ -1,27 +1,65 @@
-# Customer Orders Data Cleaning and Upload Script
+# Overview
+
+This script is designed to read, clean, transform, and upload customer order data to Google Cloud Storage (GCS). Below is an explanation of the decisions made at each step:
 
 
-## Features
 
-The script performs the following tasks:
-- **Remove Duplicates**: Automatically detects and removes duplicate records.
-- **Fill Missing Values**: Handles missing values in several fields by filling with appropriate defaults (mean for `Quantity`, median for `OrderAmount`, etc.).
-- **Data Transformation**:
-  - Convert non-numeric entries (e.g., "Three", "One Hundred Pounds") to numeric values.
-  - Compute additional columns like `TotalOrderValue` (OrderAmount * Quantity).
-- **Timestamp Normalization**: Converts invalid or inconsistent timestamps to a standard format, filling missing dates using forward fill.
-- **Upload to Google Cloud Storage (GCS)**: The cleaned dataset is saved locally and uploaded to a specified GCS bucket.
+## Design Justification
 
-## Prerequisites
+1. **CSV File Reading**:
+   
+   The script uses pandas to read the CSV because pandas.read_csv() is a highly efficient method for loading data 
+   into a DataFrame, which facilitates further transformations.
 
-### Tools and Libraries:
-- Python 3.x
-- [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
-- Python libraries:
-  - `pandas`
-  - `google-cloud-storage`
-  
+2. **Removing Duplicates**: 
+
+   Duplicates are removed based on all columns except OrderID.
+
+3. **Handling Invalid Timestamps**:
+
+   Invalid dates are handled using pd.to_datetime with errors='coerce', which converts any invalid date format into 
+   NaT (Not a Time).
+
+4. **Filling Missing Timestamps**:
+
+   Missing values in OrderDate are filled using forward fill (method='ffill').Forward fill propagates the last valid 
+   observation forward, which is a reasonable strategy for filling missing date values in sequential data like orders.
+
+5. **Handling Missing or Invalid Order Amounts**:
+
+   Invalid or non-numeric values in OrderAmount are coerced to NaN. Missing values are then replaced with the median 
+   value of the non-missing OrderAmount.
+   
+   Rationale: The median is used instead of the mean to avoid the influence of outliers on the central tendency, 
+   ensuring that extreme order amounts don’t skew the results.
+
+6. **Handling Missing or Invalid Quantity**:
+
+   Similar to OrderAmount, non-numeric values in Quantity are replaced with NaN, and missing values are filled with 
+   the mean of valid quantities.
+   
+   Rationale: Since Quantity  doesn't have outliers like OrderAmount, the mean is an appropriate 
+   measure to replace missing values.
+
+7. **Handling Missing ProductID**:
+
+   Missing values in ProductID are filled with -1, a placeholder indicating a missing or unidentifiable product.
+   
+   Rationale: This ensures no missing values are left for ProductID and -1 placeholder is easily 
+   recognizable for filtering.
+
+8. **Calculating Total Order Value**:
+
+   A new column TotalOrderValue is computed as the product of OrderAmount and Quantity.
+
+9. **Saving Data to Google Cloud Storage (GCS)**:
+
+   The cleaned DataFrame is saved to GCS, using the google-cloud-storage library to interact with Google Cloud.
+
+
+
 ### Google Cloud Setup:
+
 1. **Create a GCS Bucket**: Create a bucket in Google Cloud Storage to store the cleaned data.
 2. **Generate a Service Account Key**:
    - Create a service account in the Google Cloud Console and download the JSON key.
@@ -32,8 +70,4 @@ The script performs the following tasks:
      export GOOGLE_APPLICATION_CREDENTIALS="path/to/your/credentials.json"
      ```
 
-## Design Justifications
-
-1. 
-2. 
    
