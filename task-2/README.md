@@ -101,21 +101,27 @@ This script is designed to read, clean, transform, and upload customer order dat
 
 <img width="1221" alt="image" src="https://github.com/user-attachments/assets/e36311de-d5a7-4350-bbfd-415d2244c21d">
 
-## highest average spending aggregrated by region query
+## Highest average spending aggregrated by region query
 
-1. **Window Function (AVG() with OVER()):**:
+1. **RollingAverage CTE:**: 
    
    This window function calculates the rolling average of the TotalOrderValue for each customer over a 30-day period 
    (29 preceding rows plus the current row)
 
-2. **Partitioning by CustomerID:**:
+2. **RegionAggregates CTE:**:
    
-   Ensures that the rolling average is computed individually for each customer
+   Takes the RollingAvgSpending calculated in the first CTE and aggregates it at the OrderRegion level.
 
-3. **Ordering by OrderDate:**:
-   
-   Ensures that the rolling average is computed in chronological order over a window of 30 days
+3. **Final SELECT and ORDER BY:**:
+
+   Retrieve the regions and their average spending, and rank them from highest to lowest.
 
 ## RESULT:
+
+<img width="557" alt="image" src="https://github.com/user-attachments/assets/9c8ec562-bc45-4075-b6be-2e3cf861a5cd">
+
+<img width="725" alt="image" src="https://github.com/user-attachments/assets/2cc197e5-72fe-48c1-b75d-95bf510396f1">
+
+
 
    
