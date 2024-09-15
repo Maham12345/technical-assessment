@@ -82,16 +82,16 @@ This script is designed to read, clean, transform, and upload customer order dat
 
 ## 30 days rolling average query
 
-1. **Window Function (AVG() with OVER()):**:
+1. **Window Function (AVG() with OVER())**:
    
    This window function calculates the rolling average of the TotalOrderValue for each customer over a 30-day period 
    (29 preceding rows plus the current row)
 
-2. **Partitioning by CustomerID:**:
+2. **Partitioning by CustomerID**:
    
    Ensures that the rolling average is computed individually for each customer
 
-3. **Ordering by OrderDate:**:
+3. **Ordering by OrderDate**:
    
    Ensures that the rolling average is computed in chronological order over a window of 30 days
 
@@ -103,16 +103,16 @@ This script is designed to read, clean, transform, and upload customer order dat
 
 ## Highest average spending aggregrated by region query
 
-1. **RollingAverage CTE:**: 
+1. **RollingAverage CTE**: 
    
    This window function calculates the rolling average of the TotalOrderValue for each customer over a 30-day period 
    (29 preceding rows plus the current row)
 
-2. **RegionAggregates CTE:**:
+2. **RegionAggregates CTE**:
    
    Takes the RollingAvgSpending calculated in the first CTE and aggregates it at the OrderRegion level.
 
-3. **Final SELECT and ORDER BY:**:
+3. **Final SELECT and ORDER BY**:
 
    Retrieve the regions and their average spending, and rank them from highest to lowest.
 
