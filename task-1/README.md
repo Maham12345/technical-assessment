@@ -6,4 +6,4 @@ Your company is building a real-time analytics platform for e-commerce data. The
 
 ## High Level Diagram
 
-<img width="429" alt="image" src="https://github.com/user-attachments/assets/bae80f1c-c4ec-4d25-9383-a8468cd09384">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/bae80f1c-c4ec-4d25-9383-a8468cd09384">
