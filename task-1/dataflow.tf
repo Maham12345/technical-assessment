@@ -5,7 +5,7 @@ resource "google_dataflow_job" "pubsub_to_bigquery" {
   temp_gcs_location = "gs://ecommerce-data-bucket/tmp/" # Ensure this bucket exists
 
   parameters = {
-    inputTopic  = google_pubsub_topic.ecommerce_data_topic.id
+    inputSubscription  = google_pubsub_topic.ecommerce_data_topic.id
     outputTableSpec = "metal-music-435521-a6:ecommerce_data_warehouse.ecommerce_data"
   }
 }
